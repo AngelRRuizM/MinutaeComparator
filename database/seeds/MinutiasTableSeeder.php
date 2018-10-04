@@ -17,5 +17,12 @@ class MinutiasTableSeeder extends Seeder
             'angle' => 0.0,
             'coincident_id' => 1,
         ]);
+
+        DB::table('minutias')->insert([
+            'x' => 0,
+            'y' => 0,
+            'angle' => 0.0,
+            'coincident_id' => 1,
+        ]);
     }
 }
