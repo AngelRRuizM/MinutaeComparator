@@ -31,4 +31,12 @@ class User extends Authenticatable
     public function comparisons(){
         return $this->hasMany('App\Models\Comparison');
     }
+
+    public static function validate($data) {
+        return Validator::make($data, [
+            'email' => 'required|email|string|max:255|unique:users',
+            'name' => 'required|max:500|string',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
 }

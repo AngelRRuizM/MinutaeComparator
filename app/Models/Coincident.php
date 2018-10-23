@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Validator;
 
 class Coincident extends Model
 {
@@ -16,5 +17,12 @@ class Coincident extends Model
 
     public function comparison(){
         return $this->belongsTo('App\Models\Comparison');
+    }
+
+    public static function validate($data) {
+        return Validator::make($data, [
+            'percentage' => 'required|min:0|max:0',
+            'comparison_id' => 'required|exists:comparison,id'
+        ]);
     }
 }

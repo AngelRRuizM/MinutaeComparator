@@ -17,4 +17,14 @@ class Comparison extends Model
         return $this->belongsTo('App\User');
     }
 
+    public static function validate($data) {
+        return Validator::make($data, [
+            'template' => 'required|max:500',
+            'image' => 'required|max:500',
+            'hand' => 'required',
+            'region' => 'required',
+            'match' => 'required',
+            'user_id' => 'required|exists:user,id'
+        ]);
+    }
 }
