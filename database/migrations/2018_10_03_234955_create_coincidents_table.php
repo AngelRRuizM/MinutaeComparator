@@ -18,11 +18,7 @@ class CreateCoincidentsTable extends Migration
             $table->increments('id');
             $table->double('percentage', 5, 3);
             $table->integer('comparison_id')->unsigned();
-            $table->integer('minutia1_id')->unsigned()->nullable();
-            $table->integer('minutia2_id')->unsigned()->nullable();
             $table->foreign('comparison_id')->references('id')->on('comparisons')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('minutia1_id')->references('id')->on('minutias')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('minutia2_id')->references('id')->on('minutias')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
