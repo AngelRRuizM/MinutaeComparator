@@ -11,10 +11,17 @@ use App\Helpers\ResponseHelper;
 class ComparisonController extends Controller
 {
     /**
+     * Returns a list of comparizons
+     */
+    public function index() {
+        return view('comparisons.list');
+    }
+
+    /**
      * Create new comparison
      */
     public function create(){
-        return view('');
+        return view('comparisons.create');
     }
     
     /**
@@ -29,8 +36,10 @@ class ComparisonController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator->errors());
         }
+
         $comparison = Comparison::create($request->all());
-        return redirect(route(''));
+        
+        return redirect(route('comparisons.show', $comparison->id));
     }
     /**
      * Display the specified compasrison
@@ -39,10 +48,7 @@ class ComparisonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Comparison $comparison)
-    {   
-        if($comparison == null){
-            return redirect()->back()->withErrors(['The requested element does not exists']);
-        }
-        return view('', compact['comparison']);
+    {
+        return view('comparisons.show', compact('comparison'));
     }
 }
