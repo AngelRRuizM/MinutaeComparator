@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comparison extends Model
 {
 
-    protected $fillable = ['template', 'image', 'hand', 'region', 'match', 'uder_id'];
+    protected $fillable = ['template', 'image', 'hand', 'region', 'match', 'user_id'];
 
     public function coincidents(){
         return $this->hasMany('App\Models\Coincident');
