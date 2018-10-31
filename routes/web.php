@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function() {
+    return redirect(route('coparisons'));
+})->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/comparaciones', 'ComparisonController@index')->name('comparisons');
+    Route::get('/comparaciones/create', 'ComparisonController@create')->name('comparisons.create');
+    Route::get('/comparaciones/{comparison}', 'ComparisonController@show')->name('comparisons.show');
+    Route::post('/comparaciones', 'ComparisonController@store')->name('comparisons.store');
+});
