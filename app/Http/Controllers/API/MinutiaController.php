@@ -10,6 +10,13 @@ use App\Helpers\ResponseHelper;
 class MinutiaController extends Controller
 {
     /**
+     * Create new comparison
+     */
+    public function create(){
+        return view('');
+    }
+
+    /**
      * Store a newly created event in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -19,10 +26,10 @@ class MinutiaController extends Controller
     {
         $validator = Minutia::validate($request->all());
         if($validator->fails()){
-            return ResponseHelper::validationErrorResponse($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
         $minutia = Minutia::create($request->all());
-        return response()->json($minutia, 201);
+        return redirect(route(''));
     }
     /**
      * Display the specified minutia
@@ -32,6 +39,9 @@ class MinutiaController extends Controller
      */
     public function show(Minutia $minutia)
     {   
-        return response()->json(Minutia::with(['coincident'])->get()->find($minutia->id), 200);
+        if($minutia == null){
+            return redirect()->back()->withErrors(['The requested element does not exists']);
+        }
+        return view('', compact['minutia']);
     }
 }
