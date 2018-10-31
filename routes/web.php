@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', function() {
-    return redirect(route('coparisons'));
+    return redirect(route('comparisons'));
 })->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
