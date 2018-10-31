@@ -10,9 +10,15 @@ use App\Helpers\ResponseHelper;
 
 class ComparisonController extends Controller
 {
+    /**
+     * Create new comparison
+     */
+    public function create(){
+        return view('');
+    }
     
     /**
-     * Store a newly created event in storage.
+     * Store a newly created comparison in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -21,10 +27,10 @@ class ComparisonController extends Controller
     {
         $validator = Comparison::validate($request->all());
         if($validator->fails()){
-            return ResponseHelper::validationErrorResponse($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
         $comparison = Comparison::create($request->all());
-        return response()->json($comparison, 201);
+        return redirect(route(''));
     }
     /**
      * Display the specified compasrison
@@ -34,6 +40,9 @@ class ComparisonController extends Controller
      */
     public function show(Comparison $comparison)
     {   
-        return response()->json(Comparison::with(['user', 'coincidents'])->get()->find($comparison->id), 200);
+        if($comparison == null){
+            return redirect()->back()->withErrors(['The requested element does not exists']);
+        }
+        return view('', compact['comparison']);
     }
 }

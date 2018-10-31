@@ -10,7 +10,14 @@ use App\Helpers\ResponseHelper;
 class CoincidentController extends Controller
 {
     /**
-     * Store a newly created event in storage.
+     * Create new coincident
+     */
+    public function create(){
+        return view('');
+    }
+
+    /**
+     * Store a newly created coincident in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -19,10 +26,10 @@ class CoincidentController extends Controller
     {
         $validator = Coincident::validate($request->all());
         if($validator->fails()){
-            return ResponseHelper::validationErrorResponse($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
         $coincident = Coincident::create($request->all());
-        return response()->json($coincident, 201);
+        return redirect(route(''));
     }
     /**
      * Display the specified coincident
@@ -32,6 +39,9 @@ class CoincidentController extends Controller
      */
     public function show(Coincident $coincident)
     {   
-        return response()->json(Coincident::with(['minutias', 'comparison'])->get()->find($coincident->id), 200);
+        if($coincident == null){
+            return redirect()->back()->withErrors(['The requested element does not exists']);
+        }
+        return view('', compact['coincident']);
     }
 }
