@@ -7,6 +7,7 @@ use App\Models\Comparison;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ResponseHelper; 
+use Illuminate\Support\Facades\Auth;
 
 class ComparisonController extends Controller
 {
@@ -32,12 +33,19 @@ class ComparisonController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Comparison::validate($request->all());
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator->errors());
-        }
+        $this->validate($request, Comparison::$rules);
 
-        $comparison = Comparison::create($request->all());
+        $template = $request->template->store('/images');
+        $query = $request->template->store('/images');
+
+        $comparison = Comparison::create([
+            'template' => $template,
+            'image' => $query,
+            'hand' => $request->hand,
+            'region' => $request->region,
+            'match' => true,
+            'user_id' => Auth::user()->id,
+        ]);
         
         return redirect(route('comparisons.show', $comparison->id));
     }

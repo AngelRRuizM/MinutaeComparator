@@ -12,8 +12,8 @@ class ComparisonsTableSeeder extends Seeder
     public function run()
     {
         DB::table('comparisons')->insert([
-            'template' => '/image1',
-            'image' => '/image2',
+            'template' => 'images/image1',
+            'image' => 'images/image2',
             'hand' => 'derecha',
             'region' => 'pulgar',
             'match' => True,
