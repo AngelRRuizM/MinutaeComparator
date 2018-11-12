@@ -8,7 +8,7 @@ use Validator;
 class Coincident extends Model
 {
     const relations = ['template', 'query', 'comparison'];
-    protected $fillable = ['percentage', 'minutia1_id', 'minutia2_id', 'comparison_id'];
+    protected $fillable = ['percentage', 'type', 'comparison_id'];
 
    
     public function minutias(){
