@@ -17,7 +17,6 @@ class CreateCoincidentsTable extends Migration
         Schema::create('coincidents', function (Blueprint $table) {
             $table->increments('id');
             $table->double('percentage', 5, 3);
-            $table->string('type');
             $table->integer('comparison_id')->unsigned();
             $table->foreign('comparison_id')->references('id')->on('comparisons')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

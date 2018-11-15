@@ -12,13 +12,4 @@ class Minutia extends Model
     public function coincident(){
         return $this->belongsTo('App\Models\Coincident');
     }
-
-    public static function validate($data) {
-        return Validator::make($data, [
-            'x' => 'required|min:0',
-            'y' => 'required|min:0',
-            'angle' => 'required|min:0',
-            'coincident_id' => 'required|exists:coincident,id'
-        ]);
-    }
 }

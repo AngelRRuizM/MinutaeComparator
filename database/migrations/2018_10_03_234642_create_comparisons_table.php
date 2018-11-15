@@ -18,7 +18,7 @@ class CreateComparisonsTable extends Migration
             $table->string('template');
             $table->string('image');
             $table->enum('hand', ['derecha', 'izquierda']);
-            $table->enum('region', ['pulgar', 'índice', 'corazón', 'anular', 'meñique', 'palma']);
+            $table->enum('region', ['pulgar', 'índice', 'medio', 'anular', 'meñique', 'palma']);
             $table->boolean('match');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

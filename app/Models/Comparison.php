@@ -12,8 +12,8 @@ class Comparison extends Model
     static $rules = [
         'hand' => 'required|string',
         'region' => 'required|string',
-        'template' => 'required|file|image|mimes:png|max:5120',
-        'image' => 'required|file|image|mimes:png|max:5120'
+        'template' => 'required|file|image|mimes:png,jpg,jpeg|max:5120',
+        'image' => 'required|file|image|mimes:png,jpg,jpeg|max:5120'
     ];
 
     public function coincidents(){

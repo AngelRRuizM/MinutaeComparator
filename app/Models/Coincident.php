@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
+use App\Models\Minutia;
 
 class Coincident extends Model
 {
     const relations = ['template', 'query', 'comparison'];
-    protected $fillable = ['percentage', 'type', 'comparison_id'];
+    protected $fillable = ['percentage', 'comparison_id'];
 
    
     public function minutias(){
@@ -19,10 +20,27 @@ class Coincident extends Model
         return $this->belongsTo('App\Models\Comparison');
     }
 
-    public static function validate($data) {
-        return Validator::make($data, [
-            'percentage' => 'required|min:0|max:0',
-            'comparison_id' => 'required|exists:comparison,id'
+    public static function createWithMinutae($data, $comparison_id) {
+        $coincident = $this::create([
+            'percentage' => $data->MatchingValue,
+            'type' => $data->TemplateMtia->MinutiaType,
+            'comparison_id' => $comparison_id
+        ]);
+
+        $minutia = $data->TemplateMtia;
+        Minutia::create([
+            'x' => $minutia->X,
+            'y' => $minutia->Y,
+            'angle' => $minutia->Angle,
+            'coincident_id' => $coincident->id
+        ]);
+
+        $minutia = $data->QueryMtia;
+        Minutia::create([
+            'x' => $minutia->X,
+            'y' => $minutia->Y,
+            'angle' => $minutia->Angle,
+            'coincident_id' => $coincident->id
         ]);
     }
 }
