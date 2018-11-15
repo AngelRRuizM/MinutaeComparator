@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comparison;
+use App\Models\Coincident;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,17 +36,28 @@ class ComparisonController extends Controller
     {
         $this->validate($request, Comparison::$rules);
 
-        $template = $request->template->store('/images');
-        $query = $request->template->store('/images');
+        $template = str_replace('public', 'storage', $request->template->store('public/images'));
+        $query = str_replace('public', 'storage', $request->image->store('public/images'));
+        
+        exec('bin\Comparator2.exe '.$template.' '.$query, $output);
+        if(sizeof($output) < 1) {
+            return redirect()->back()->withErrors(['error', 'No fue posible analizar las imágenes.']);
+        }
+
+        $result = json_decode($output[0]);
 
         $comparison = Comparison::create([
             'template' => $template,
             'image' => $query,
             'hand' => $request->hand,
             'region' => $request->region,
-            'match' => true,
+            'match' => $result->Item1,
             'user_id' => Auth::user()->id,
         ]);
+
+        foreach($result->Item2 as $coincident) {
+            Coincident::createWithMinutae($coincident, $comparison->id);
+        }
         
         return redirect(route('comparisons.show', $comparison->id));
     }

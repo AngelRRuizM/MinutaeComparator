@@ -21,9 +21,8 @@ class Coincident extends Model
     }
 
     public static function createWithMinutae($data, $comparison_id) {
-        $coincident = $this::create([
+        $coincident = Coincident::create([
             'percentage' => $data->MatchingValue,
-            'type' => $data->TemplateMtia->MinutiaType,
             'comparison_id' => $comparison_id
         ]);
 
