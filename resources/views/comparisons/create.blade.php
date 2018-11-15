@@ -28,7 +28,7 @@
                     <select class="form-control {{ $errors->has('region') ? ' is-invalid' : '' }}" id="region" name="region">
                         <option value="">Zona</option>
                         <option value="pulgar">Pulgar</option>
-                        <option value="indice">Índice</option>
+                        <option value="índice">Índice</option>
                         <option value="medio">Medio</option>
                         <option value="anular">Anular</option>
                         <option value="meñique">Meñique</option>
