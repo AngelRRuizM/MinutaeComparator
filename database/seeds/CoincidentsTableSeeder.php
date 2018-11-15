@@ -13,8 +13,7 @@ class CoincidentsTableSeeder extends Seeder
     {   
         Schema::disableForeignKeyConstraints();
         DB::table('coincidents')->insert([
-            'percentage' => 99.99,
-            'type' => "Diverge",
+            'percentage' => .99,
             'comparison_id' => 1,
         ]);
         Schema::enableForeignKeyConstraints();
