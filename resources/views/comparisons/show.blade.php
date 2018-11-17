@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<div>
     <br />
     <div class="row">
         <h1>Comparasión</h1>
@@ -27,18 +27,18 @@
 
                 <div class="col-md-6">
                     <div class="text-center">
-                        <img src="{{asset($comparison->template)}}" class="img-fluid">
+                        <canvas class="img-fluid" id="canvasT">
                     </div>
                     <div class="form-group">
-                        <label for="template">Plantilla</label>
+                        <label>Plantilla</label>
                     </div>
                 </div>
 
                 <div class="form-group col-md-6">
                     <div class="text-center">
-                        <img src="{{asset($comparison->image)}}" class="img-fluid">
+                        <canvas class="img-fluid" id="canvasQ">
                     </div>
-                    <label for="exampleInputEmail1">Imagen 2</label>
+                    <label>Consulta</label>
                 </div>
             </div>
         </div>
@@ -56,7 +56,6 @@
                             <th scope="col">Porcentaje</th>
                             <th scope="col">Plantilla</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Tipo</th>
                             <th scope="col">Angulo</th>
                         </tr>
                     </thead>
@@ -67,7 +66,6 @@
                             <td>{{$coincident->percentage}}</td>
                             <td>{{$coincident->minutias->first()->x}}, {{$coincident->minutias->first()->x}}</td>
                             <td>{{$coincident->minutias->last()->x}}, {{$coincident->minutias->last()->x}}</td>
-                            <td>{{$coincident->type}}</td>
                             <td>{{$coincident->minutias->first()->angle}}</td>
                         </tr>
                     @endforeach
@@ -77,4 +75,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/minutia.drawer.js') }}"></script>
 @endsection

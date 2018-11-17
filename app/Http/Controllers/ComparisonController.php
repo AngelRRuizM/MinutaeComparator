@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ResponseHelper; 
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class ComparisonController extends Controller
 {
@@ -69,6 +70,15 @@ class ComparisonController extends Controller
      */
     public function show(Comparison $comparison)
     {
+        JavaScript::put([
+            'coincidents' => $comparison->coincidents()->with('minutias')->get(),
+            'templateImg' => asset($comparison->template),
+            'queryImg' => asset($comparison->image)
+        ]);
+
+        // dd(getimagesize($comparison->template));
+        // dd(getimagesize($comparison->image));
+
         return view('comparisons.show', compact('comparison'));
     }
 }
