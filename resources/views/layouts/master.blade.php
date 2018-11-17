@@ -31,7 +31,8 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">Comparador de huellas</h5>
         @auth
-            <a class="btn btn-outline-primary" href="">Inicio</a>
+            <a class="btn btn-outline-primary" style="margin-right: 5px;" href="{{ route('comparisons') }}">Historial</a>
+            <a class="btn btn-outline-primary" style="margin-right: 5px;" href="{{ route('comparisons.create') }}">Nueva consulta</a>
         @endauth
 
         @guest
@@ -71,7 +72,9 @@
         crossorigin="anonymous"></script>
 
     <!-- PNotify JS -->
-    <script type="text/javascript" src="js/pnotify.custom.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/pnotify.custom.min.js') }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>
