@@ -71,13 +71,13 @@ function drawMinutia(context, minutia, color) {
     context.strokeStyle = color;
 
     drawArc(context, minutia.x, minutia.y);
-    drawLine(context, minutia.x, minutia.y, 15, minutia.angle); 
+    drawLine(context, minutia.x, minutia.y, 20, minutia.angle); 
 }
 
 // Draws an arc centered in the specified coordinate
 function drawArc(context, x, y) {
     context.beginPath();
-    context.arc(x, y, 5, 0, 2*Math.PI);
+    context.arc(x, y, 8, 0, 2*Math.PI);
     context.lineWidth = 3;
     context.stroke();
 }

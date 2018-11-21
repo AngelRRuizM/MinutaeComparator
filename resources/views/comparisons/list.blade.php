@@ -29,6 +29,7 @@
                             <td>No</td>
                         @endif
                         <td>{{$comparison->created_at}}</td>
+                        <td><a class="btn btn-primary" href="{{ route('comparisons.show', $comparison->id) }}">Ver</a>
                     </tr>
                 @endforeach
             </tbody>

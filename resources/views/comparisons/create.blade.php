@@ -13,8 +13,8 @@
                     <label for="hand">Selecciona la mano</label>
                     <select class="form-control {{ $errors->has('hand') ? ' is-invalid' : '' }}" id="hand" name="hand">
                         <option value="">Region</option>
-                        <option value="derecha">Izquierda</option>
-                        <option value="izquierda">Derecha</option>
+                        <option value="izquierda">Izquierda</option>
+                        <option value="derecha">Derecha</option>
                     </select>
                     <div class="invalid-feedback">
                         {{ $errors->first('hand') }}

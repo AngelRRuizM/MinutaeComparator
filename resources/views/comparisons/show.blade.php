@@ -3,6 +3,15 @@
 @section('content')
 <div>
     <br />
+    @if($comparison->match)
+        <div class="alert alert-success" role="alert">
+            Las huellas coinciden
+        </div>
+    @else
+        <div class="alert alert-danger" role="alert">
+            Las huellas no coinciden
+        </div>
+    @endif
     <div class="row">
         <h1>Comparasión</h1>
 
@@ -63,7 +72,7 @@
                     @foreach($comparison->coincidents as $i=>$coincident)
                         <tr>
                             <th scope="row">{{($i + 1)}}</th>
-                            <td>{{$coincident->percentage}}</td>
+                            <td>{{$coincident->percentage * 100}}%</td>
                             <td>{{$coincident->minutias->first()->x}}, {{$coincident->minutias->first()->x}}</td>
                             <td>{{$coincident->minutias->last()->x}}, {{$coincident->minutias->last()->x}}</td>
                             <td>{{$coincident->minutias->first()->angle}}</td>
