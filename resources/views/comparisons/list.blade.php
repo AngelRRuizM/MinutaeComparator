@@ -17,7 +17,7 @@
 
             </thead>
             <tbody>
-                @foreach(Auth::user()->comparisons as $comparison)
+                @foreach(Auth::user()->comparisons->sortByDesc('created_at') as $comparison)
                     <tr>
                         <td>{{$comparison->id}}</td>
                         <td>{{$comparison->hand}}</td>

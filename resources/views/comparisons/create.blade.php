@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <h1>Comparar huellas</h1>
-
+    
     <form class="col-md-12" method="POST" action="{{route('comparisons.store')}}" enctype="multipart/form-data">
         @csrf
         
