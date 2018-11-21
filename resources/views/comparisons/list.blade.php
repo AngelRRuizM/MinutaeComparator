@@ -24,9 +24,9 @@
                         <td>{{$comparison->region}}</td>
                         <td>{{sizeof($comparison->coincidents)}}</td>
                         @if($comparison->match == 1)
-                            <td>Sí</td>
+                            <td><span class="text-success font-weight-bold">Sí</span></td>
                         @else
-                            <td>No</td>
+                        <td><span class="text-danger font-weight-bold">No</span></td>
                         @endif
                         <td>{{$comparison->created_at}}</td>
                         <td><a class="btn btn-primary" href="{{ route('comparisons.show', $comparison->id) }}">Ver</a>
