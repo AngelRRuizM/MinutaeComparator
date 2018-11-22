@@ -87,5 +87,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/minutia.drawer.js') }}"></script>
+    <script src="{{ asset('js/minutia.drawer.js') }}"></script>
 @endsection
