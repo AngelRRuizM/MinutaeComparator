@@ -36,7 +36,7 @@
 
                 <div class="col-md-6">
                     <div class="text-center">
-                        <canvas class="img-fluid" id="canvasT">
+                        <canvas class="img-fluid" id="canvasT"  onclick="onClickHandler(event)">
                     </div>
                     <div class="form-group">
                         <label>Plantilla</label>
@@ -45,7 +45,7 @@
 
                 <div class="form-group col-md-6">
                     <div class="text-center">
-                        <canvas class="img-fluid" id="canvasQ">
+                        <canvas class="img-fluid" id="canvasQ"  onclick="onClickHandler(event)">
                     </div>
                     <label>Consulta</label>
                 </div>
