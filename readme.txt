@@ -14,6 +14,7 @@ And finally, initiate the server:
 
     php artisan serve
 
+Now you can browse localhost:8000 in your browser.
 Log in with the default creedentials or register a new account.
 The default user is:
     email: user@test.com
